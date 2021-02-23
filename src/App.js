@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 const products = [
@@ -15,6 +15,7 @@ const mYarrya = ['shakil','shakil','amar baba','rozina']
     <div className="App">
       <header className="App-header">
       <Count></Count>
+      <DtnamicUser></DtnamicUser>
 
         {/* <MyComponent Name={arrays[0]} Fname="Khan"></MyComponent>  {/* call component */}
         {/* <MyComponent Name={arrays[1]} Fname="Khan"></MyComponent>
@@ -37,7 +38,6 @@ const mYarrya = ['shakil','shakil','amar baba','rozina']
   );
 }
 function Products(props) {
-console.log(props.name);
 
   return(
     <div >
@@ -73,5 +73,25 @@ function Count() {
 //   )
 // }
 
+function DtnamicUser() {
+ 
+ const [userData, SetUserData] = useState([]);
+ useEffect(() => {
+  fetch('https://jsonplaceholder.typicode.com/users')
+  .then(res => res.json())
+  .then(data => SetUserData(data))
+},[])
+ 
+  return(
+   <div>
+     <h1>Dynamic User: {userData.length}</h1>
+     <ol>
+       {
+         userData.map(user => <li>{user.name}</li>)
+       }
+     </ol>
+   </div>
+ ) 
+}
 
 export default App;
