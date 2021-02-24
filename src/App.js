@@ -51,7 +51,10 @@ function Products(props) {
 function Count() {
   const [data,setData] = useState(0)
   const handleCount = () => setData(data + 1)
-  const countDecrease = () => setData(data - 1)
+  const countDecrease = () => {
+  const newSetData = (data - 1) 
+  setData(newSetData)
+}
   return(
     <div>
       <h1>Count: {data}</h1>
@@ -73,6 +76,8 @@ function Count() {
 //   )
 // }
 
+
+// api load 
 function DtnamicUser() {
  
  const [userData, SetUserData] = useState([]);
